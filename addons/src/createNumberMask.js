@@ -88,6 +88,10 @@ export default function createNumberMask({
     integer = (includeThousandsSeparator) ? addThousandsSeparator(integer, thousandsSeparatorSymbol) : integer
 
     mask = convertToMask(integer)
+    
+    if (!allowLeadingZeroes) {
+      mask[0] = /[1-9]/
+    }
 
     if ((hasDecimal && allowDecimal) || requireDecimal === true) {
       if (rawValue[indexOfLastDecimal - 1] !== decimalSymbol) {
